@@ -1,0 +1,74 @@
+@baseUrl = http://localhost:10000
+
+### 1. Проверка приложения
+GET {{baseUrl}}/
+
+### 2. Информация об API
+GET {{baseUrl}}/api/info
+
+### 3. Список игроков
+GET {{baseUrl}}/api/players
+
+### 4. Поиск в списке
+GET {{baseUrl}}/api/players?search=cyber
+
+### 5. Получить игрока
+GET {{baseUrl}}/api/players/1
+
+### 6. Проверка 404
+GET {{baseUrl}}/api/players/999
+
+### 7. Отдельный endpoint поиска
+GET {{baseUrl}}/api/players/search?search=valorant
+
+### 8. LINQ: топ игроков
+GET {{baseUrl}}/api/players/top?count=5
+
+### 9. LINQ: фильтр
+GET {{baseUrl}}/api/players/filter?minRating=1500&minWins=20
+
+### 10. LINQ: статистика по играм
+GET {{baseUrl}}/api/players/statistics/by-game
+
+### 11. Создать профиль
+POST {{baseUrl}}/api/players
+Content-Type: application/json
+
+{
+  "nickname": "ApiTester",
+  "game": "Valorant",
+  "teamName": "Без команды",
+  "description": "Тестовый профиль игрока для проверки API",
+  "rating": 1200,
+  "wins": 8,
+  "losses": 3
+}
+
+### 12. Обновить профиль (замените 8 на ID из ответа POST)
+PUT {{baseUrl}}/api/players/8
+Content-Type: application/json
+
+{
+  "nickname": "ApiTesterUpdated",
+  "game": "Counter-Strike 2",
+  "teamName": "Test Team",
+  "description": "Обновлённый тестовый профиль",
+  "rating": 1350,
+  "wins": 10,
+  "losses": 3
+}
+
+### 13. Некорректный запрос - ожидается 400
+POST {{baseUrl}}/api/players
+Content-Type: application/json
+
+{
+  "nickname": "",
+  "game": "",
+  "rating": -1,
+  "wins": -1,
+  "losses": -1
+}
+
+### 14. Удалить тестовую запись (замените 8 на её ID)
+DELETE {{baseUrl}}/api/players/8

@@ -1,0 +1,12 @@
+**/bin/
+**/obj/
+.vs/
+.idea/
+*.user
+*.suo
+*.cache
+.DS_Store
+Thumbs.db
+TestResults/
+appsettings.Development.json
+appsettings.*.local.json
